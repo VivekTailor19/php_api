@@ -13,7 +13,7 @@ $response = mysqli_query($checkConnection, $query);
 if($response)
 {
     $jsonMSG = array('status' => 'OK' , 'msg' => 'Succesfully INSERTED');
- }
+}
 else
 {
     $jsonMSG = array('status' => 'OOPS !' , 'msg' => 'Failed to insert');
