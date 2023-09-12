@@ -4,13 +4,14 @@ include("../connection.php");
 
 @$name = $_POST['name'];
 @$email = $_POST['email'];
-@$pass = $_POST['pass'];
+@$password = $_POST['pass'];
 
-if( $name != null && $email != null && $pass != null)
+if( $name != null && $email != null && $password != null)
 {
    $readQuery = " SELECT email FROM `user` WHERE `email` = '$email' " ;
    $res = mysqli_query($checkConnection, $readQuery);
-    echo mysqli_num_rows($res);
+    
+
    if( mysqli_num_rows($res)>0 )
    {
         $jsonMSG = array('status' => 'OK' , 'msg' => 'You are already User.........');
@@ -18,7 +19,8 @@ if( $name != null && $email != null && $pass != null)
    }
    else
    {
-
+        $pass = password_hash($password,PASSWORD_DEFAULT);
+        
         $query = "INSERT INTO `user` (`name` , `email` , `password`) VALUES ('$name', '$email' , '$pass')";
         $response = mysqli_query($checkConnection, $query);
 
