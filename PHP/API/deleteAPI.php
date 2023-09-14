@@ -9,10 +9,12 @@
 
         $readQuery = "SELECT * FROM `product` WHERE `id` = '$id'";
         $res = mysqli_query($checkConnection,$readQuery);
-
+        $row = mysqli_fetch_assoc($res);
+        $image = $row['image'];
+    
         if(mysqli_num_rows($res)>0)
         {
-
+            unlink("../upload/$image");
             $query = "DELETE FROM `product` WHERE `id` = '$id' ";
             $response = mysqli_query($checkConnection, $query);
     
